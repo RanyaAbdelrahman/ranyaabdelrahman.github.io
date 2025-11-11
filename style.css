@@ -1,0 +1,488 @@
+/* استيراد خطوط احترافية */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- لوحة الألوان الجديدة (Modern & Professional) --- */
+:root {
+    --primary-color: #0d47a1; /* أزرق داكن (Deep Navy Blue) */
+    --secondary-color: #1e88e5; /* أزرق متوسط حيوي */
+    --accent-color: #ff9800; /* برتقالي/ذهبي هادئ للمسات */
+    --background-light: #f9f9f9; /* خلفية بيضاء مائلة للرمادي الفاتح */
+    --text-dark: #212121; /* لون النص الرئيسي */
+    --text-light: #ffffff;
+    --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.08); /* ظل ناعم */
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Poppins', sans-serif;
+    font-size: 16px;
+    color: var(--text-dark);
+    background: var(--background-light);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* --- شريط التنقل (Navigation) --- */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 5%; /* تباعد جانبي */
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.logo {
+    color: var(--text-light);
+    font-size: 1.8rem; /* حجم أكبر قليلاً */
+    font-weight: 800;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px; /* زيادة التباعد بين الروابط */
+}
+
+.nav-links li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-links li a:hover {
+    background: var(--secondary-color);
+    color: var(--text-light); /* يظل النص فاتح ليظهر بشكل جيد على الأزرق الفاتح */
+}
+
+/* زر الهمبرجر */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+/* --- الأقسام العامة وتأثيرات الظهور (Scroll Animations) --- */
+.section {
+    padding: 120px 5% 80px; /* زيادة التباعد العمودي */
+    text-align: center;
+    min-height: 40vh;
+    /* تأثير البداية */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: var(--text-light); 
+}
+
+#about, #our-channel, #contact {
+    background: var(--background-light); 
+}
+
+/* ظهور الأقسام */
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem; /* حجم أكبر */
+    margin-bottom: 50px; /* تباعد أكبر بعد العنوان */
+    font-weight: 700;
+    position: relative;
+}
+
+/* خط أسفل العناوين */
+.section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background: var(--accent-color); /* استخدام لون اللمسة */
+    border-radius: 2px;
+}
+
+.section h2 i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+/* --- تأثيرات العناصر الداخلية (Fade-in for sub-elements) --- */
+.section p, .section li, .section h3, .card, .contact-icon {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section.show p,
+.section.show li,
+.section.show h3,
+.section.show .card,
+.section.show .contact-icon,
+.section.show .project-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --- Home Section --- */
+.home-section {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    background: linear-gradient(135deg, var(--background-light), #e3f2fd); /* تدرج هادئ */
+}
+
+.home-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.profile-photo {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--text-light);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* ظل أنعم */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.text-container {
+    max-width: 500px;
+    text-align: left;
+}
+
+.text-container h1 {
+    font-size: 3rem; /* حجم احترافي أكبر */
+    color: var(--primary-color);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.text-container .highlight {
+    color: var(--accent-color);
+}
+
+.text-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 35px;
+}
+
+.text-container p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+/* --- زر My Resume (Home Button) --- */
+.home-btn {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: var(--text-light);
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.home-btn:hover {
+    background: var(--primary-color);
+    color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- البطاقات العامة (Cards) --- */
+.about-container, .courses-grid, .cert-grid, .project-gallery {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    text-align: left;
+}
+
+.about-card, .exp-card, .course-card, .cert-card, .service-card {
+    background: var(--text-light);
+    border-radius: 10px; 
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--secondary-color); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover, .exp-card:hover, .course-card:hover, .cert-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.course-card {
+    border-left-color: var(--accent-color); 
+}
+
+.course-card h3, .cert-card h3, .exp-card h3, .about-card h3 {
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* تنسيق القوائم داخل البطاقات */
+.about-card ul, .exp-card ul, .service-card ul {
+    padding-left: 20px;
+    list-style: none;
+}
+
+.about-card li, .exp-card li, .service-card li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 15px;
+    color: #555;
+}
+
+.about-card li:before, .exp-card li:before, .service-card li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* زر الشهادات (Credential Button) */
+.cred-btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 15px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cred-btn:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* --- Project Section --- */
+.project-card {
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 12px;
+    border: 1px solid #ddd; /* إضافة حد خفيف */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 0;
+}
+
+.project-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-card:hover img {
+    transform: scale(1.05); /* تأثير تكبير الصورة عند المرور */
+}
+
+.project-card h3 {
+    padding: 15px;
+    margin: 0;
+    background: var(--background-light); /* خلفية خفيفة لاسم المشروع */
+    border-top: 1px solid #eee;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+/* --- Channel Section --- */
+.channel-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.channel-card {
+    background-color: var(--text-light);
+    border: 2px solid var(--secondary-color);
+    padding: 25px;
+    width: 250px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.channel-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.channel-card h3 {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.preview-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #ff0000; /* لون يوتيوب الأحمر */
+    color: white;
+    border-radius: 6px; /* حواف أقل استدارة */
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.preview-btn:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+/* --- Contact Section --- */
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-icon {
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.contact-icon img {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px; /* شكل مربع مدور بدلاً من دائري */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.3s;
+}
+
+.contact-icon:hover img {
+    transform: translateY(-5px) scale(1.05); /* حركة للأعلى والتكبير */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    filter: brightness(1.1);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    /* قائمة التنقل */
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--primary-color);
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 20px 0;
+        box-shadow: 0 8px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    .nav-links.show {
+        display: flex;
+        animation: slideDown 0.4s ease-out;
+    }
+    
+    @keyframes slideDown {
+        from { transform: translateY(-100%); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .nav-links li {
+        width: 90%;
+        text-align: center;
+        margin: 5px 0;
+    }
+    .nav-links li a:hover {
+        background: var(--secondary-color);
+    }
+    
+    /* باقي الأقسام */
+    .section {
+        padding: 80px 5% 40px;
+    }
+    .home-content {
+        gap: 30px;
+    }
+    .text-container {
+        text-align: center;
+    }
+    .text-container h1 {
+        font-size: 2.2rem;
+    }
+    .text-container h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    .section h2 {
+        font-size: 2rem;
+    }
+    .profile-photo {
+        width: 200px;
+        height: 200px;
+    }
+}
